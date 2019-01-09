@@ -157,7 +157,7 @@ pipeline {
                                 auth: TokenAuth(apiToken: '5d8e9831b0132ee7eb7ed1adbfc20428', userName: 'rajeshk'),
                                 job: 'Preflight-4.0-STF', maxConn: 1,
                                 parameters:
-                                    """TESTBED_DESCRIPTOR_NAME=simple-testbed-postgres.json.template
+                                    """TESTBED_DESCRIPTOR_NAME=multi-vc-multi-orchestrator-testbed-postgres.json.template
                                     VCD_BUILD=${VCD_BUILD}
                                     OWNER=rajeshk
                                     VCD_VAPP_PREFIX=python-sdk
@@ -243,8 +243,12 @@ pipeline {
                     cell['deployment']['ovfProperties']['hostname']
 
                     def vc_server = props['sites'][0]['vcServers'][0]
-                    def vc_username = vc_server['credentials']['username']
+                    def vc_server2 = props['sites'][0]['vcServers'][0]
+                    def vc_ip = vc_server['endPointURI'].replaceAll("https://', '')
                     def vc_password = vc_server['credentials']['password']
+                    def vc2_ip = vc2_server['endPointURI'].replaceAll("https://', '')
+                    def vc2_password = vc2_server['credentials']['password']
+
                     if(vcd_password=='ca$hc0w') {
                         vcd_password = 'ca\\$hc0w'
                         println vcd_password
@@ -261,6 +265,10 @@ pipeline {
                     VCD_ORG=System
                     VCD_USER=$vcd_username
                     VCD_PASSWORD=$vcd_password
+                    VC_IP=$vc_ip
+                    VC_PASSWORD=$vc_password
+                    VC2_IP=$vc2_ip
+                    VC2_PASSWORD=$vc2_password
                     """.stripIndent()
                 }
             }

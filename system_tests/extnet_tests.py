@@ -64,7 +64,8 @@ class TestExtNet(BaseTestCase):
         logger = Environment.get_default_logger()
         TestExtNet._sys_admin_client = Environment.get_sys_admin_client()
         TestExtNet._config = Environment.get_config()
-
+        TestExtNet._common_ext_net_name = TestExtNet._config[
+            'external_network']['name']
         platform = Platform(TestExtNet._sys_admin_client)
         vc_name = TestExtNet._config['vc']['vcenter_host_name']
         portgrouphelper = PortgroupHelper(TestExtNet._sys_admin_client)
@@ -361,7 +362,8 @@ class TestExtNet(BaseTestCase):
         """List available provider Vdcs.
         """
         platform = Platform(TestExtNet._sys_admin_client)
-        ext_net_resource = platform.get_external_network(self._name)
+        ext_net_resource = platform.get_external_network(
+            TestExtNet._common_ext_net_name)
         extnet_obj = ExternalNetwork(TestExtNet._sys_admin_client,
                                     resource=ext_net_resource)
         pvdc_name_list = extnet_obj.list_provider_vdc()
@@ -371,7 +373,8 @@ class TestExtNet(BaseTestCase):
         """List available provider Vdcs.
         """
         platform = Platform(TestExtNet._sys_admin_client)
-        ext_net_resource = platform.get_external_network(self._name)
+        ext_net_resource = platform.get_external_network(
+            TestExtNet._common_ext_net_name)
         extnet_obj = ExternalNetwork(TestExtNet._sys_admin_client,
                                     resource=ext_net_resource)
         pvdc_name_list = extnet_obj.list_provider_vdc('name==*')
