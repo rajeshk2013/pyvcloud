@@ -422,6 +422,9 @@ class ExternalNetwork(object):
     def _get_provider_vdc_name_for_provided_ext_nw(self, pvdc_href):
         pvdc = PVDC(self.client, href=pvdc_href)
         pvdc_resource = pvdc.get_resource()
+        if not hasattr(pvdc_resource.AvailableNetworks) and hasattr(
+                pvdc_resource.AvailableNetworks.Network):
+            return None
         networks = pvdc_resource.AvailableNetworks.Network
         for network in networks:
             pvdc_ext_nw_name = network.get("name")

@@ -367,7 +367,8 @@ class TestExtNet(BaseTestCase):
         extnet_obj = ExternalNetwork(TestExtNet._sys_admin_client,
                                     resource=ext_net_resource)
         pvdc_name_list = extnet_obj.list_provider_vdc()
-        self.assertTrue(len(pvdc_name_list) > 0)
+        # Not adding assert because there can be no pvdc associated with the
+        # provided external network
 
     def test_0070_list_available_pvdc_with_filter(self):
         """List available provider Vdcs.
@@ -378,7 +379,8 @@ class TestExtNet(BaseTestCase):
         extnet_obj = ExternalNetwork(TestExtNet._sys_admin_client,
                                     resource=ext_net_resource)
         pvdc_name_list = extnet_obj.list_provider_vdc('name==*')
-        self.assertTrue(len(pvdc_name_list) > 0)
+        # Not adding assert because there can be no pvdc associated with the
+        # provided external network
 
     def test_0075_list_available_gateways(self):
         """List available gateways.
