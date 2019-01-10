@@ -161,7 +161,7 @@ pipeline {
                                 auth: TokenAuth(apiToken: '4a43d5a348427139732d61c71d030e81', userName: 'rajeshk'),
                                 job: 'Preflight-4.0-STF', maxConn: 1,
                                 parameters:
-                                    """TESTBED_DESCRIPTOR_NAME=multi-vc-multi-orchestrator-testbed-postgres.json.template
+                                    """TESTBED_DESCRIPTOR_NAME=simple-testbed-postgres.json.template
                                     VCD_BUILD=${VCD_BUILD}
                                     OWNER=rajeshk
                                     VCD_VAPP_PREFIX=python-sdk

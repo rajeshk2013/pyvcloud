@@ -68,6 +68,7 @@ class TestExtNet(BaseTestCase):
             'external_network']['name']
         platform = Platform(TestExtNet._sys_admin_client)
         vc_name = TestExtNet._config['vc']['vcenter_host_name']
+        TestExtNet._vc2_host_ip = TestExtNet._config['vc2']['vcenter_host_ip']
         portgrouphelper = PortgroupHelper(TestExtNet._sys_admin_client)
         pg_name = portgrouphelper.get_available_portgroup_name(vc_name,
                                                                TestExtNet._portgroupType)
@@ -302,6 +303,8 @@ class TestExtNet(BaseTestCase):
         logger = Environment.get_default_logger()
         platform = Platform(TestExtNet._sys_admin_client)
         vc_name = TestExtNet._config['vc2']['vcenter_host_name']
+        if TestExtNet._vc2_host_ip is None or TestExtNet._vc2_host_ip == '':
+            return
         portgrouphelper = PortgroupHelper(TestExtNet._sys_admin_client)
         pg_name = portgrouphelper.get_available_portgroup_name(vc_name,
                                                                TestExtNet._portgroupType)
@@ -336,6 +339,8 @@ class TestExtNet(BaseTestCase):
         logger = Environment.get_default_logger()
         platform = Platform(TestExtNet._sys_admin_client)
         vc_name = TestExtNet._config['vc2']['vcenter_host_name']
+        if TestExtNet._vc2_host_ip is None or TestExtNet._vc2_host_ip == '':
+            return
         port_group_helper = PortgroupHelper(TestExtNet._sys_admin_client)
         pg_name = port_group_helper.get_ext_net_portgroup_name(vc_name,
                                                                self._name)
