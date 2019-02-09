@@ -65,9 +65,7 @@ def runSystemTests() {
     //withCredentials(credentialsArray) {
         // Run the default system test list.
     withEnv(environmentArray) {
-        system_test_output << sh "support/run_in_docker.sh
-        system_tests/run_system_tests.sh"
-    println system_test_output
+        system_test_output << sh "support/run_in_docker.sh system_tests/run_system_tests.sh"
     }
     //}
 }
