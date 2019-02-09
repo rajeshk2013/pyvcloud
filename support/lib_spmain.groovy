@@ -6,6 +6,7 @@
 credentialsArray = []
 environmentArray = []
 temporaryFiles = []
+system_test_output = ""
 
 // Process job parameters and determine which credentials or environment
 // variables are required for proper processing.
@@ -64,7 +65,9 @@ def runSystemTests() {
     //withCredentials(credentialsArray) {
         // Run the default system test list.
     withEnv(environmentArray) {
-        sh "support/run_in_docker.sh system_tests/run_system_tests.sh"
+        system_test_output << sh "support/run_in_docker.sh
+        system_tests/run_system_tests.sh"
+    println system_test_output
     }
     //}
 }
