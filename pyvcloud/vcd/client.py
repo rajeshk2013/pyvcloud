@@ -746,7 +746,7 @@ class Client(object):
 
     def _get_defaut_logger(self, file_name="vcd_pysdk.log",
                            log_level=logging.DEBUG,
-                           max_bytes=30000000, backup_count=30):
+                           max_bytes=900000000, backup_count=90):
         """This will set the default logger with Rotating FileHandler.
 
         Open the specified file and use it as the stream for logging.
