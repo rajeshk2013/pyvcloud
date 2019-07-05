@@ -1094,23 +1094,6 @@ class Client(object):
         self._logger.debug('Request uri (%s): %s' % (response.request.method,
                                                      response.request.url))
 
-        if self._log_bodies and request_body is not None:
-            if isinstance(request_body, str):
-                body = request_body
-            else:
-                body = request_body.decode(self.fsencoding)
-            #self._logger.debug('Request body: %s' % body)
-
-        self._logger.debug('Response status code: %s' % response.status_code)
-
-        if self._log_bodies and not skip_logging_response_body and \
-           _response_has_content(response):
-            if isinstance(response.content, str):
-                response_body = response.content
-            else:
-                response_body = response.content.decode(self.fsencoding)
-            #self._logger.debug('Response body: %s' % response_body)
-
     def _do_request_prim(self,
                          method,
                          uri,
